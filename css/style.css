@@ -1,0 +1,331 @@
+/* vim: set expandtab tabstop=4 shiftwidth=4 autoindent smartindent:
+//---------------------------------------------------------
+// CAPTAIN  SLOG
+//---------------------------------------------------------
+//
+//	FILE:       style.css 
+//	SYSTEM:     The Consternation pages
+//	AUTHOR:     Mark Addinall
+//	DATE:       12th April 2015
+//	SYNOPSIS:   Responsive AND fluid CSS design
+//				bolted together for the Consternation
+//				gang.  I am probably to late as Bernd 
+//				has set up a fine WordPress site on his own.
+//				Someone might be interested in using it
+//				for another purpose.
+//
+//				No-one seems to want to document CSS.  I
+//				dunno why.
+//				
+//				And since the 'C' in 'CSS' stands for 'cascading', 
+//				then why don't people use Top Down Stewise Refinement
+//				to write the stuff?
+//
+*/
+
+
+
+/* first clean up whatever nasties may be lurking in our DOM */
+
+@import url('reset.css');
+
+*, *:before, *:after {
+        margin: 0;
+        padding: 0;
+	outline: none;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        -o-box-sizing:border-box;
+        -ms-box-sizing:border-box;
+        box-sizing:border-box;
+ }
+
+/* Start of the RESPONSIVE design so that this thing will play
+ *  nicely on fondleslabs and telephones
+ */
+
+
+   @viewport {
+      width: 100%;
+      zoom: 1;
+   }
+
+
+  img, video, canvas {
+     width: 100%;
+  }  
+
+/*	I found a font I liked for this project so I bundled it
+ *	in with the software tarball.  That way it looks like
+ *	it is working if the user has no internet connection
+ *	for a while.
+ */
+
+@font-face {
+	font-family: regular-dunhill;
+	src: url(fonts/lmromandunh10-regular.otf);
+}
+
+@font-face {
+	font-family: smallcaps;
+	src: url(fonts/lmromancaps10-regular.otf);
+}
+
+
+@font-face {
+	font-family: italic-dunhill;
+	src: url(fonts/lmromandunh10-oblique.otf);
+}
+
+
+/* the body is simple.  The 960px hack is due to CSS3 not being
+ * QUITE ready at the moment.  If you don't give it some depth 
+ * to begin with, it has real problems up-sizing.  I expect
+ * this to be fixed in a year or so.
+ */
+
+
+body {
+height: 100%;
+width: 100%;
+
+min-height: 960px;
+
+font-family: regular-dunhill, smallcaps, italic-dunhill;
+
+/* this is the plain, light to dark desktop in the semi-shade.
+ * A simple linear gradient.
+ */
+
+background-image: -ms-linear-gradient(bottom right, #FFFFFF 0%, #484D0D 100%);
+background-image: -moz-linear-gradient(bottom right, #FFFFFF 0%, #484D0D 100%);
+background-image: -o-linear-gradient(bottom right, #FFFFFF 0%, #484D0D 100%);
+background-image: -webkit-gradient(linear, right bottom, left top, color-stop(0, #FFFFFF), color-stop(1, #484D0D));
+background-image: -webkit-linear-gradient(bottom right, #FFFFFF 0%, #484D0D 100%);
+background-image: linear-gradient(to top left, #FFFFFF 0%, #484D0D 100%);
+
+/* this is SUPPOSED to handle the 960px hack, but it doesn't.
+ * This is the bit of CSS that is broken.  It works for real images, I use it.
+ * It doesn't like generated psuedo-images.
+ */
+
+-moz-background-size: cover;
+-webkit-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+
+color: #4D3205;
+
+/* Ok, you will start to notice now that EVERYTHING in this CSS description
+ * is in units of em, or percentages of common constnts.  APART from the
+ * curvature of the radius of box-rounded corners.  Measuring a radius in
+ * ems makes little sense.  Starting this discipline early, and not
+ * breaking it for a "quick hack fix" actually makes multi-platform
+ * development rather straight-forward.  One would not think so given the
+ * amount of bleating that goes on in the industry.
+ */
+
+
+margin: 2em;
+
+}
+
+/* Now to start with some of our base types.  What we are
+ * doing is pretty easy.  Some older versoins of CSS3 web
+ * browsers had a habit of chopping piccies and lists in half
+ * to make them fit neatly on a page!  So we drop them a hint
+ * to 'avoid' doing so. 
+ */
+
+img {
+-webkit-column-break-inside: avoid;
+page-break-inside: avoid;
+break-inside: avoid;
+max-width: 100%;
+height: auto;
+
+padding-top: 0.4em;
+padding-bottom: 0.6em;
+
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+
+-webkit-box-shadow: 8px 8px 10px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    8px 8px 10px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         8px 8px 10px 0px rgba(50, 50, 50, 0.75);
+}
+
+
+/* Hard rules go all away across the parent element.  Not
+ * restricted to the current column.
+ */
+
+hr{
+-webkit-column-span:all;
+-moz-column-span:all;
+column-span:all;
+}
+
+
+/* h1s and h2s are used for titles and tag lines, so the too
+ * can go across the page unrestricted.  As do h4s, they are a little special
+ * being tiny caps, but still a header
+ */
+
+h1{
+-webkit-column-span:all;
+-moz-column-span:all;
+column-span:all;
+font-family: regular-dunhill;
+font-size:4em;
+margin-bottom:0.5em;
+line-height:1.2em;
+text-align: center;
+}
+
+
+h2{
+-webkit-column-span:all;
+-moz-column-span:all;
+column-span:all;
+font-family: regular-dunhill;
+font-size:3em;
+margin-bottom:0.2em;
+line-height:1.2em;
+}
+
+
+h3{
+font-family: italic-dunhill;
+font-size:2em;
+font-weight: bold;
+line-height:1em;
+}
+
+h4{
+-webkit-column-span:all;
+-moz-column-span:all;
+column-span:all;
+font-family: smallcaps;
+font-size: 1em;
+text-align: center;
+line-height:1em;
+padding-bottom:0.2em;
+}
+
+/* The 'sheet' in the newspaper represents our 'wrapper' if
+ * you like.  Again, everything is described in ems or percentiles
+ * (apart from radii).  The background colour scheme is quite complex with many
+ * colour stops added in at irregular intervals.  I wanted to get the
+ * impression of a low quality paper being read in the ligh of a window.
+ * I think it works OK.
+ */
+
+.sheet {
+width:80%;
+height: 100%;
+
+margin: 3em auto;
+padding:2em;
+
+-webkit-border-radius: 9px;
+-moz-border-radius: 9px;
+border-radius: 9px;
+
+background-color:#fff;
+background-image: -ms-linear-gradient(bottom right, #FFFFFF 0%, #ABA467 50%, #E3E1AA 75%, #F0EBD3 87.5%, #F0F0D8 35%, #D9D37A 100%);
+background-image: -moz-linear-gradient(bottom right, #FFFFFF 0%, #ABA467 50%, #E3E1AA 75%, #F0EBD3 87.5%, #F0F0D8 35%, #D9D37A 100%);
+background-image: -o-linear-gradient(bottom right, #FFFFFF 0%, #ABA467 50%, #E3E1AA 75%, #F0EBD3 87.5%, #F0F0D8 35%, #D9D37A 100%);
+background-image: -webkit-gradient(linear, right bottom, left top, color-stop(0, #FFFFFF), color-stop(0.5, #ABA467), color-stop(0.75, #E3E1AA), color-stop(0.875, #F0EBD3), color-stop(0.35, #F0F0D8), color-stop(1, #D9D37A));
+background-image: -webkit-linear-gradient(bottom right, #FFFFFF 0%, #ABA467 50%, #E3E1AA 75%, #F0EBD3 87.5%, #F0F0D8 35%, #D9D37A 100%);
+background-image: linear-gradient(to top left, #FFFFFF 0%, #ABA467 50%, #E3E1AA 75%, #F0EBD3 87.5%, #F0F0D8 35%, #D9D37A 100%);
+
+
+-webkit-box-shadow: 8px 8px 15px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    8px 8px 15px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         8px 8px 15px 0px rgba(50, 50, 50, 0.75);
+}
+
+/* News is printed on newssheets!  This sets up our grid system.  It LOOKS
+ * really simple, but in fact, this little declaration is doing most
+ * of the heavy lifting in making this site extremely responsive
+ * and fluid.
+ */
+
+.news{
+-webkit-columns:4 10em;
+-moz-columns:4 10em;
+columns:4 10em;
+-webkit-column-gap:2em;
+-moz-column-gap:2em;
+column-gap:2em;
+}
+
+
+/* News consists of articles and paragraphs.  Much the same at
+ * the moment apart from the font used.
+ */
+
+article, p {
+font-family: regular-dunhill;
+font-size:1em;
+text-align:justify;
+line-height:1.4em;
+padding-bottom: 1em;
+}
+
+
+
+/* Each article has a LEAD paragraph  */
+
+.lead{
+font-family:smallcaps;
+font-size:1.3em;
+text-align:left;
+font-style:italic;
+}
+
+
+.footer{
+font-family:smallcaps;
+font-size:1em;
+text-align:left;
+font-style:italic;
+}
+
+a {
+    color: #B57404;
+}
+
+
+/* Carrying on with the Goth/Steampunk look, we do something
+ * nice to the first letter of each paragraph.
+ * Make it GOLD!  A bit bigger, and slanty!
+ */
+
+
+p::first-letter {
+    font-size: 120%;
+    color: #B57404;
+    font-style: italic;
+    padding-right: 0.2em;
+}
+
+/* This is really the only responsive/fluid stuff left
+ * to do.  It lowers the base font sizes as we start to get
+ * short on real-estate.
+ */
+
+@media screen and (max-width: 35em) {
+  body { font-size: 80%;}
+}
+
+
+@media screen and (max-width: 28em) {
+  h1,h2 { font-size: 1.7em;}
+}
+
+
+/* End of CSS file ----------------------- */
+
